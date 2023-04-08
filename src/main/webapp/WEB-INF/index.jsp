@@ -17,7 +17,6 @@
 </head>
 <body >
 	<div class="container-fluid">
-
 		<div class="d-flex mx-auto mt-5" style="width:500px;">
 			<div class="me-5">
 				<h1>Register</h1>
@@ -30,7 +29,7 @@
 					<div>
 						<form:label class="fw-bold mt-2 form-label" path='email'>Email:</form:label>
 						<form:errors class="text-danger" path="email"/>
-						<form:input class="form-control" type='text' path='email'/>
+						<form:input class="form-control" path='email' type='text' />
 					</div>
 					<div>
 						<form:label class="fw-bold mt-2 form-label" path='password'>Password:</form:label>

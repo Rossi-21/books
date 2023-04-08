@@ -1,5 +1,7 @@
 package com.rossi21.books.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,9 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
+import com.rossi21.books.models.Book;
 import com.rossi21.books.models.LoginUser;
 import com.rossi21.books.models.User;
+import com.rossi21.books.services.BookService;
 import com.rossi21.books.services.UserService;
 
 @Controller
@@ -21,6 +24,8 @@ public class UserController {
 
 	@Autowired
     private UserService userServ;
+	@Autowired
+    private BookService bookServ;
 	// Login or Register Page
 	@GetMapping("/")
     public String index(Model model) {
@@ -71,6 +76,8 @@ public class UserController {
     	
     	Long userId = (Long)session.getAttribute("userId");
     	model.addAttribute("user", userServ.getOneById(userId));
+    	List<Book> books = bookServ.allBooks();
+        model.addAttribute("books", books);
     	return "dashboard.jsp";
     }
     // Logout Method

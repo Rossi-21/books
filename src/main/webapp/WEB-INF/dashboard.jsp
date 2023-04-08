@@ -16,9 +16,44 @@
 	<title>Book Club</title>
 </head>
 <body>
-<h1>Welcome <c:out value="${user.userName}"/></h1>
-<a href="/logout">logout</a>
-<h4>Books from everyone's shelves:</h4>
-<a href="/books/new">+ add a book to my shelf</a>
+<div class="container-fluid" style="width:800px;">
+	<div class="d-flex mx-auto mt-5" >
+		<div class="me-5" style="width:800px;">
+			<div class="d-flex align-items-center justify-content-between">
+				<h1>Welcome <c:out value="${user.userName}"/></h1>
+				<a href="/logout">logout</a>
+			</div>
+			<div class="d-flex align-items-center justify-content-between">
+				<h4>Books from everyone's shelves:</h4>
+				<a href="/books/new">+ add a book to my shelf</a>
+			</div>
+			<div>
+			<table class="table table-hover table-borderless" style="background-color:;">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Author Name</th>	
+					<th>Posted By</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="books" items = "${books}">
+					<tr>
+						<td><c:out value="${books.id}"></c:out></td>
+						<td><c:out value="${books.title}"></c:out></td>
+						<td><c:out value="${books.author}"></c:out></td>
+						<td><c:out value="${books.user.userName}"></c:out></td>
+						
+						<!-- <td><a href="/burgers/${burgers.id}/edit">edit</a></td> -->
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+			</div>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>

@@ -51,6 +51,7 @@ public class Book {
         this.author = author;
         this.thoughts = thoughts;  
     }
+   
     @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
