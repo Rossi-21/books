@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.rossi21.books.models.Book;
@@ -36,7 +38,20 @@ public class BookController {
         } else {
         	bookServ.createBook(book);
             return "redirect:/books";
-        }
-		
+        }	
 	}
+	@GetMapping("/books/{id}")
+    public String edit(@PathVariable("id") Long id, Model model, HttpSession session) {
+        Book book = bookServ.getOneById(id);
+        model.addAttribute("book", book);
+        Long userId = (Long)session.getAttribute("userId");
+    	model.addAttribute("user", userServ.getOneById(userId));
+        return "show.jsp";
+    }
+	@DeleteMapping("/books/{id}")
+    public String destroy(@PathVariable("id") Long id) {
+        bookServ.deleteBook(id);
+        return "redirect:/books";
+    }
+    
 }

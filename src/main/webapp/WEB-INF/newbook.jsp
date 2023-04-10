@@ -20,6 +20,7 @@
 	<div class="d-flex mx-auto mt-5" style="width:500px;">
 		<div class="me-5">
 			<h1>Add a Book to Your Shelf!</h1>
+			<a href="/books">Back to the Shelves</a>
 			<form:form class="" action="/books/create" method="post" modelAttribute="book">
 				<div>
 					<form:label class="fw-bold mt-2 form-label" path='title'>Title:</form:label>
