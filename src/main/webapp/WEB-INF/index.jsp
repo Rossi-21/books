@@ -15,10 +15,9 @@
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<title>Book Club Login</title>
 </head>
-<body >
-	<div class="container-fluid">
-		<div class="d-flex mx-auto mt-5" style="width:500px;">
-			<div class="me-5">
+<body>
+	<div class="container-fluid d-flex mx-auto mt-5 hero-image border border-dark rounded">
+			<div class="reg">
 				<h1>Register</h1>
 				<form:form class="" action="/register" method="post" modelAttribute="newUser">
 					<div>
@@ -60,7 +59,7 @@
 			   		<input class="mt-3 border border-dark rounded" type="submit" value="Submit"/>
 	   			</form:form>
 			</div>
-		</div>	
+			
 	</div>
 </body>
 </html>

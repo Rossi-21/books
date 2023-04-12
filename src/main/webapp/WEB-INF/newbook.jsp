@@ -15,12 +15,14 @@
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<title>Book Club</title>
 </head>
-<body>
+<body class="bg">
 <div class="container-fluid">
-	<div class="d-flex mx-auto mt-5" style="width:500px;">
-		<div class="me-5">
+	<div class="p-5">
+		<div class="d-flex align-items-center justify-content-between border-bottom border-dark">
 			<h1>Add a Book to Your Shelf!</h1>
 			<a href="/books">Back to the Shelves</a>
+		</div>
+		<div class="mt-3 width">	
 			<form:form class="" action="/books/create" method="post" modelAttribute="book">
 				<div>
 					<form:label class="fw-bold mt-2 form-label" path='title'>Title:</form:label>

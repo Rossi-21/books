@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rossi21.books.models.Book;
 import com.rossi21.books.services.BookService;
@@ -41,12 +43,27 @@ public class BookController {
         }	
 	}
 	@GetMapping("/books/{id}")
-    public String edit(@PathVariable("id") Long id, Model model, HttpSession session) {
+    public String show(@PathVariable("id") Long id, Model model, HttpSession session) {
         Book book = bookServ.getOneById(id);
         model.addAttribute("book", book);
         Long userId = (Long)session.getAttribute("userId");
     	model.addAttribute("user", userServ.getOneById(userId));
         return "show.jsp";
+    }
+	@GetMapping("/books/{id}/edit")
+    public String edit(@PathVariable("id") Long id, Model model) {
+        Book book = bookServ.getOneById(id);
+        model.addAttribute("book", book);
+        return "edit.jsp";
+    }
+	@RequestMapping(value="/books/{id}", method=RequestMethod.PUT)
+    public String update(@Valid @ModelAttribute("book") Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            return "edit.jsp";
+        } else {
+            bookServ.updateBook(book);
+            return "redirect:/books";
+        }
     }
 	@DeleteMapping("/books/{id}")
     public String destroy(@PathVariable("id") Long id) {

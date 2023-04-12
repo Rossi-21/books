@@ -1,0 +1,23 @@
+.hero-image {
+	background-image: url('/img/bookbg.jpeg');
+	background-repeat: no-repeat;
+	width: 910px;
+	height: 600px;
+	box-shadow: 5px 5px 10px;
+	padding-top:100px;
+	padding-left:195px;
+}
+.reg {
+	margin-right:75px;
+}
+.bg {
+	background-image: linear-gradient(#f3f3f3, #ebebeb, #dbddde);
+	height:735px;
+	
+}
+.purple {
+	color: #663399;
+}
+.width {
+	width:40%;
+}
