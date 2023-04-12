@@ -22,16 +22,16 @@
 				<h1><c:out value="${book.title}"></c:out></h1>
 				<a href="/books">Back to the Shelves</a>
 			</div>
-			<p class="fs-3"><span class="text-danger"><c:out value="${book.user.userName}"/></span> read <span class="purple"><c:out value="${book.title}"/> </span>by <span class="text-success"><c:out value="${book.author}"/></span> </p>
-			<p class="fs-4">Here are <c:out value="${book.user.userName}"/>'s thoughts:</p>
-			<div class="border-top border-bottom border-dark pt-3 width">
+			<p class="fs-3 mt-3"><span class="text-danger"><c:out value="${book.user.userName}"/></span> read <span class="purple"><c:out value="${book.title}"/> </span>by <span class="text-success"><c:out value="${book.author}"/></span> </p>
+			<p class="fs-4 mt-4">Here are <c:out value="${book.user.userName}"/>'s thoughts:</p>
+			<div class="border-top border-bottom border-dark border-3 pt-3 width">
 				<p><c:out value="${book.thoughts}"/></p>
 			</div>
 			
 			<c:if test="${book.user.id == user.id}">
-				<div class="d-flex mt-3">
+				<div class="d-flex mt-3 justify-content-end width">
 						<!-- Edit Button -->
-					<a href="/books/${book.id}/edit"><button type="button" class="btn btn-primary ms-3">Edit</button></a>
+					<a href="/books/${book.id}/edit"><button type="button" class="btn btn-primary me-3">Edit</button></a>
 					<!-- Delete Button -->
 			        <form action="/books/${book.id}" method="post">
 					    <input type="hidden" name="_method" value="delete">

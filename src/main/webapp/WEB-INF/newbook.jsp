@@ -43,7 +43,7 @@
 					<form:errors path="user" class="error"/>
 					<form:input type="hidden" path="user" value="${user.id}" class="form-control"/>
 				</div>	
-		   		<input class="mt-3 border border-dark rounded" type="submit" value="Create"/>
+		   		<input class="btn btn-primary mt-3 border border-dark rounded" type="submit" value="Create"/>
    			</form:form>
 		</div>	
 	</div>	

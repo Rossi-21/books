@@ -40,7 +40,7 @@
 			   			<form:errors class="text-danger" path="confirm"/>
 						<form:input class="form-control" path='confirm' type="password"/>	
 			   		</div>
-			   		<input class="mt-3 border border-dark rounded" type="submit" value="Submit"/>
+			   		<input class="btn mt-3 border border-dark rounded" type="submit" value="Submit"/>
 	   			</form:form>
 			</div>			
 			<div class="ms-5">
@@ -56,7 +56,7 @@
 						<form:errors class="text-danger" path="password"/>
 						<form:input class="form-control" path='password' type="password"/>	    		
 					</div>			
-			   		<input class="mt-3 border border-dark rounded" type="submit" value="Submit"/>
+			   		<input class="btn mt-3 border border-dark rounded" type="submit" value="Login"/>
 	   			</form:form>
 			</div>
 			
