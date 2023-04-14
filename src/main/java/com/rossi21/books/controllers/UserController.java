@@ -1,5 +1,7 @@
 package com.rossi21.books.controllers;
 
+
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -86,6 +88,7 @@ public class UserController {
     	session.removeAttribute("userId");
     	return "redirect:/";
     }
+    
 }
         
 	

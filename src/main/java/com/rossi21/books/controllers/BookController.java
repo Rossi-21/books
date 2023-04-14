@@ -26,13 +26,14 @@ public class BookController {
     private BookService bookServ;
 	@Autowired
     private UserService userServ;
-	
+	// Create a book page
 	@GetMapping("/books/new")
     public String index(Model model, @ModelAttribute("book") Book book,  HttpSession session) {
 		Long userId = (Long)session.getAttribute("userId");
     	model.addAttribute("user", userServ.getOneById(userId));
         return "newbook.jsp";
     }
+	// Create a book method
 	@PostMapping("/books/create")
 	public String createBook(@Valid @ModelAttribute("book") Book book, BindingResult result) {
         if (result.hasErrors()) {
@@ -42,6 +43,7 @@ public class BookController {
             return "redirect:/books";
         }	
 	}
+	// Display book info page
 	@GetMapping("/books/{id}")
     public String show(@PathVariable("id") Long id, Model model, HttpSession session) {
         Book book = bookServ.getOneById(id);
@@ -50,12 +52,14 @@ public class BookController {
     	model.addAttribute("user", userServ.getOneById(userId));
         return "show.jsp";
     }
+	// Edit a book page
 	@GetMapping("/books/{id}/edit")
     public String edit(@PathVariable("id") Long id, Model model) {
         Book book = bookServ.getOneById(id);
         model.addAttribute("book", book);
         return "edit.jsp";
     }
+	// Update a book method
 	@RequestMapping(value="/books/{id}", method=RequestMethod.PUT)
     public String update(@Valid @ModelAttribute("book") Book book, BindingResult result) {
         if (result.hasErrors()) {
@@ -65,6 +69,31 @@ public class BookController {
             return "redirect:/books";
         }
     }
+	// Borrow a book Method
+    @GetMapping("/books/{id}/borrow")
+    public String borrowBook(@PathVariable("id") Long id, HttpSession session) {
+    	if(session.getAttribute("userId") == null) {
+    		return "redirect:/";
+    	}
+    	Book book = bookServ.getOneById(id);
+    	book.setBorrower(userServ.getOneById((Long)session.getAttribute("userId")));
+    	bookServ.updateBook(book);
+    	
+    	return "redirect:/home";
+    }
+    // Return a book Method
+    @GetMapping("/books/{id}/return")
+    public String returnBook(@PathVariable("id") Long id, HttpSession session) {
+    	if(session.getAttribute("userId") == null) {
+    		return "redirect:/";
+    	}
+    	Book book = bookServ.getOneById(id);
+    	book.setBorrower(null);
+    	bookServ.updateBook(book);
+    	
+    	return "redirect:/home";
+    }
+	// Delete a book method
 	@DeleteMapping("/books/{id}")
     public String destroy(@PathVariable("id") Long id) {
         bookServ.deleteBook(id);
