@@ -79,7 +79,7 @@ public class BookController {
     	book.setBorrower(userServ.getOneById((Long)session.getAttribute("userId")));
     	bookServ.updateBook(book);
     	
-    	return "redirect:/home";
+    	return "redirect:/books";
     }
     // Return a book Method
     @GetMapping("/books/{id}/return")
@@ -91,10 +91,10 @@ public class BookController {
     	book.setBorrower(null);
     	bookServ.updateBook(book);
     	
-    	return "redirect:/home";
+    	return "redirect:/books";
     }
 	// Delete a book method
-	@DeleteMapping("/books/{id}")
+	@DeleteMapping("/books/{id}/delete")
     public String destroy(@PathVariable("id") Long id) {
         bookServ.deleteBook(id);
         return "redirect:/books";

@@ -41,7 +41,11 @@
 	    			<form:textarea class="form-control" path="thoughts" cols="20" rows="3"></form:textarea>
 	    			
 	    		</div>
-	    		<input class="btn btn-primary mt-3 border border-dark rounded" type="submit" value="Submit"/>
+	    			<input class="btn btn-primary mt-3 border border-dark rounded" type="submit" value="Submit"/>
+		    		<form action="/books/${book.id}/delete" method="post">
+					    <input type="hidden" name="_method" value="delete">
+					    <input class="btn btn-danger mt-3 ms-2 border border-dark rounded" type="submit" value="Delete">
+					</form>	
 		    </form:form>
 		</div>
 	</div>

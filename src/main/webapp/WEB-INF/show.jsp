@@ -33,7 +33,7 @@
 						<!-- Edit Button -->
 					<a href="/books/${book.id}/edit"><button type="button" class="btn btn-primary me-3">Edit</button></a>
 					<!-- Delete Button -->
-			        <form action="/books/${book.id}" method="post">
+			        <form action="/books/${book.id}/delete" method="post">
 					    <input type="hidden" name="_method" value="delete">
 					    <input class="btn btn-danger" type="submit" value="Delete">
 					</form>

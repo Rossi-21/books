@@ -27,26 +27,72 @@
 				<a href="/books/new">+ add a book to my shelf</a>
 			</div>
 			<div>
-				<table class="table table-hover table-borderless" style="background-color:;">
+				<table class="table table-hover table-borderless table-width" style="background-color:;">
 					<thead>
 						<tr>
 							<th>Id</th>
 							<th>Title</th>
 							<th>Author Name</th>	
 							<th>Posted By</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="books" items = "${books}">
-							<tr>
-								<td><c:out value="${books.id}"></c:out></td>
-								<td><a href="/books/${books.id}"><c:out value="${books.title}"></c:out></a></td>
-								<td><c:out value="${books.author}"></c:out></td>
-								<td><c:out value="${books.user.userName}"></c:out></td>
-							</tr>
+							<c:if test="${books.borrower.id != user.id}">
+								<tr>
+									<td style="width:5%;"><c:out value="${books.id}"></c:out></td>
+									<td style="width:30%;"><a href="/books/${books.id}"><c:out value="${books.title}"></c:out></a></td>
+									<td style="width:25%;"><c:out value="${books.author}"></c:out></td>
+									<td style="width:18%;"><c:out value="${books.user.userName}"></c:out></td>							
+									<c:choose>
+										<c:when test="${books.user.id == user.id}">
+											<td class="d-flex align-items-center">
+												<a href="/books/${books.id}/edit">edit</a>
+												<form action="/books/${books.id}/delete" method="post">
+												    <input type="hidden" name="_method" value="delete">
+												    <input class="btn text-primary text-decoration-underline" type="submit" value="delete">
+												</form>
+											</td>
+										</c:when>
+										<c:otherwise>
+											<td>
+												<a href="/books/${books.id}/borrow">borrow</a>
+											</td>
+										</c:otherwise>
+									</c:choose>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>
+				<div>
+					<h4>Books I am Borrowing:</h4>
+					<table class="table table-hover table-borderless table-width" style="background-color:;">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Title</th>
+								<th>Author Name</th>	
+								<th>Posted By</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="books" items = "${books}">
+								<c:if test="${books.borrower.id == user.id}">
+									<tr>
+										<td style="width:5%;"><c:out value="${books.id}"></c:out></td>
+										<td style="width:30%;"><a href="/books/${books.id}"><c:out value="${books.title}"></c:out></a></td>
+										<td style="width:25%;"><c:out value="${books.author}"></c:out></td>
+										<td style="width:18%;"><c:out value="${books.user.userName}"></c:out></td>
+										<td><a href="/books/${books.id}/return">return</a></td>
+									</tr>
+								</c:if>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
